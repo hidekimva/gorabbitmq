@@ -79,8 +79,13 @@ func SendMessages(user string, password string, url string, queueName string, qu
 		log.Fatalln("Failed to send to queue: " + err.Error())
 	}
 
+	channel2, err := conn.Channel()
+	if err != nil {
+		log.Fatalln("Error creating channel with rabbitmq: ", err.Error())
+	}
+
 	// Consome mensagens da fila
-	msgs, err := channel.Consume(
+	msgs, err := channel2.Consume(
 		queueRName,
 		"",
 		true,
