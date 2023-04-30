@@ -100,6 +100,6 @@ func SendMessages(user string, password string, url string, queueName string, qu
 
 	// Loop infinito para processar as mensagens recebidas
 	for msg := range msgs {
-		fmt.Println(msg)
+		fmt.Println(msg.Body)
 	}
 }
